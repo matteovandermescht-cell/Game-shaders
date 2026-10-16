@@ -106,7 +106,8 @@ class MainActivity : Activity() {
     @Deprecated("Using the platform document picker to avoid extra dependencies")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == REQUEST_SCREENSHOT && resultCode == RESULT_OK) {
+        if (resultCode != RESULT_OK) return
+        if (requestCode == REQUEST_SCREENSHOT) {
             val uri = data?.data ?: return
             try {
                 contentResolver.takePersistableUriPermission(uri, Intent.FLAG_GRANT_READ_URI_PERMISSION)
@@ -115,6 +116,8 @@ class MainActivity : Activity() {
             screenshotPreview.setImageURI(uri)
             screenshotPreview.visibility = ImageView.VISIBLE
             screenshotLabel.text = "Screenshot selected"
+        } else if (requestCode == REQUEST_EXPORT) {
+            handleExportResult(data)
         }
     }
 
