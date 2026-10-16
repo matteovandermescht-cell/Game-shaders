@@ -1,16 +1,17 @@
-# Game Shaders
+# Game Shaders AI
 
-A lightweight Android visual-overlay companion for games, built with Kotlin.
+An Android prototype for teaching a gameplay assistant from examples.
 
-## Features
-- Dark interface with visual preset selection.
-- Optional transparent screen overlay (requires Android display-over-other-apps permission).
-- Neutral, Night, Warm and Contrast presets.
-- Non-touchable overlay designed not to block game controls.
-- GitHub Actions builds a debug APK and uploads it as an artifact.
+## Current features
+- Choose a gameplay screenshot from the device.
+- Describe what the AI should recognize in that screenshot.
+- Write the desired next action and optional conditions/notes.
+- Save examples locally, review them, and delete them.
+- Export the examples as a JSON file for use in a future training/inference pipeline.
+- GitHub Actions builds a debug APK artifact.
 
-## Limitations
-Android apps cannot universally replace a game's internal shaders. This project applies a transparent system overlay; results vary by game and Android version. It does not automate gameplay or target other players.
+## Important limitation
+This version collects and exports labeled examples. It does **not yet train or run an AI model**, analyze live gameplay, or execute taps/swipes. Those need a separate vision/decision model and an explicit, user-controlled Android screen-capture/accessibility implementation. Do not treat saved examples as a trained model.
 
 ## Build
-Open in Android Studio or run the GitHub Actions workflow on the main branch. The workflow uploads the debug APK as an artifact.
+Run the **Android APK** workflow on the main branch. Download the `Game-Shaders-debug-apk` artifact from the successful workflow run.
